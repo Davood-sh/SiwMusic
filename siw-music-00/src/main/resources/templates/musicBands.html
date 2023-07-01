@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+	
+	<header>
+	<div>
+		<a href="/"><img src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png" width="9%" /></a>
+		<label><h1>SiwMusic</h1></label> 
+	</div>
+  </header>
+	
+	<h1>Gruppi Musicali</h1>
+	<div th:if="${musicBands==null || musicBands.isEmpty()}">Non ci sono musicista nel sistema</div>
+	<ul>
+		<li th:each="musicBand : ${musicBands}">
+			<a th:href="@{'/musicBand' + '/' + ${musicBand.id}}"
+				th:text=${musicBand.nameBand}>Nirvana</a>
+				<div><img th:src="'/photos/' +${musicBand.id}+ '/' +${musicBand.urlImage}" width="5%" height="5%"></div>
+		</li>
+	</ul>
+
+</body>
+</html>

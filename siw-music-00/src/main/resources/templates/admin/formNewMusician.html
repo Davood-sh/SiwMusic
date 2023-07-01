@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>Form New Musician</title>
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+	
+ <header>
+	<div>
+		<a href="/"><img src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png" width="9%" /></a>
+		<label><h1>SiwMusic</h1></label> 
+	</div>
+  </header>
+
+<h1>Aggiungi una musicista</h1>
+
+<form th:action="@{/admin/musician}" method="POST" th:object="${musician}" enctype="multipart/form-data">
+
+       <div th:if="${#fields.hasGlobalErrors()}">
+          <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore</p>
+        
+       </div>
+
+<div>
+<label>Nome</label><span><input type="text" th:field="${musician.name}" placeholder="Nome.."/></span>
+<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+</div>
+<div>
+<label>Cognome</label><span><input type="text" th:field="${musician.surname}" placeholder="Cognome.."/></span>
+<span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+</div>
+<div>
+<label>Data di nascita</label><span><input type="date" th:field="${musician.dateOfBirth}"></span>
+</div>
+
+ <div>
+		<label>Fotografia (url):</label> 
+		<input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg , image/jpg" />
+		</div>
+
+<div>
+<span><button type="submit">Conferma</button></span>
+</div>
+
+</form>
+
+</body>
+</html>

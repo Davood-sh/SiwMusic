@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+   <nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+	
+ <header>
+	<div>
+		<a href="/"><img src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png" width="9%" /></a>
+		<label><h1>SiwMusic</h1></label> 
+	</div>
+  </header>
+
+<h1>Artisti</h1>
+	<div th:if="${musicians==null || musicians.isEmpty()}">Non ci sono musicista nel sistema</div>
+	<ul>
+		<li th:each="musician : ${musicians}">
+			<a th:href="@{'/musician' + '/' + ${musician.id}}"
+				th:text="${musician.name} + ' ' + ${musician.surname}">Kurt Cobain</a>
+				<div><img th:src="'/photos/' +${musician.id}+ '/' +${musician.urlImage}" width="5%" height="5%"></div>
+		</li>
+	</ul>
+
+</body>
+</html>

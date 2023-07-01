@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>Index Musicista</title>
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+	
+ <header>
+	<div>
+		<a href="/"><img src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png" width="9%" /></a>
+		<label><h1>SiwMusic</h1></label> 
+	</div>
+  </header>
+	
+	<h1>Gestione Musicisti</h1>
+		<div>
+			<a href="/admin/formNewMusician">Inserisci i dati di un musicista</a>
+		</div>
+		<div>
+			<a href="/musician">Musicisti</a>
+		</div>
+
+</body>
+</html>

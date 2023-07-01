@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>form Update Music Band</title>
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+<nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+	
+ <header>
+	<div>
+		<a href="/"><img src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png" width="9%" /></a>
+		<label><h1>SiwMusic</h1></label> 
+	</div>
+  </header>
+	
+	<h1>Aggiorna Gruppo Musicale</h1>
+	<div th:if="${musicBand}">
+	  <div th:text="${musicBand.nameBand}">Nirvana </div>
+	  <div>
+	  <label>Formed in : </label><span th:text="${musicBand.formed}"></span>
+	  </div>
+	  <div>
+	  <span>Musicisti : </span>
+	  <div th:each="musician : ${musicBand.musicians}">
+	  <span th:text="${musician.name} +' '+ ${musician.surname}">Kurt Cobain</span>
+	  </div>
+	  <a th:href="@{'/admin/updateMusicians/'+ ${musicBand.id}}">
+	  <button type="button">Modifica</button>
+	  </a>
+	  </div>	
+	</div>
+	
+	<div th:unless="${musicBand}">Gruppo musicale non esistente</div>
+
+</body>
+</html>

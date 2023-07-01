@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>Music Band</title>
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+	<nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span> <a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+
+	<header>
+		<div>		
+			<a href="/"><img
+				src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png"
+				width="9%" /></a>  
+				<label><h1>SiwMusic</h1></label>            
+		</div>
+		
+	</header>
+
+	<section>
+
+		<p class="col">
+			<img th:src="'/photos/' +${musicBand.id}+ '/' +${musicBand.urlImage}" width="100%" height="100%">
+
+		</p>
+
+	<div id="flex-contain">
+	    <div class="col">
+
+			<h3>Dettagli Music Band</h3>
+			<hr>
+
+			<div th:if="${musicBand}">
+				<div th:text="${musicBand.nameBand}"></div>
+				<label>Formata in :</label> <span th:text="${musicBand.formed}"></span>
+				<div>
+					<label>Paese :</label> <span th:text="${musicBand.country}"></span>
+				</div>
+			</div>
+		</div>	
+		
+		<div class="col">
+		 <h3>Musicisti </h3>
+      <hr>
+        <div th:if="${musicBand.musicians==null || musicBand.musicians.isEmpty()}">Non ci sono musicisti nel gruppo musicale</div>
+          <ul>
+             <li th:each="musician : ${musicBand.musicians}">
+               <a th:href="@{'/musician' + '/'+ ${musician.id}}"
+            th:text="${musician.name} +' ' + ${musician.surname}"></a>
+            </li>
+         </ul>
+		</div>
+			
+		</div>	
+	</section>
+
+</body>
+</html>

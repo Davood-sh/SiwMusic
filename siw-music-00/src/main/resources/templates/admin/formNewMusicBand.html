@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1256">
+<title>INew Music Band</title>
+
+<link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<nav>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</nav>
+	
+ <header>
+	<div>
+		<a href="/"><img src="https://www.pikpng.com/pngl/b/197-1977908_cool-music-logos-logo-design-music-logo-transparent.png" width="9%" /></a>
+		<label><h1>SiwMusic</h1></label> 
+	</div>
+  </header>
+
+<h1>Aggiungi un gruppo musicale</h1>
+
+<form th:action="@{/admin/musicBand}" method="POST" th:object="${musicBand}" enctype="multipart/form-data">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+          <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore</p>
+        
+        </div>
+
+<div>
+<label>Nome Music Band</label><span><input type="text" th:field="${musicBand.nameBand}" placeholder="Nome Music Band.."/></span>
+<span th:if="${#fields.hasErrors('nameBand')}" th:errors="*{nameBand}"></span>
+</div>
+<div>
+<label>Formata In</label><span><input type="text" th:field="${musicBand.formed}" placeholder="Formata In.."/></span>
+<span th:if="${#fields.hasErrors('formed')}" th:errors="*{formed}"></span>
+</div>
+<div>
+<label>Paese</label><span><input type="text" th:field="${musicBand.country}" placeholder="Paese.."/></span>
+</div>
+
+ <div>
+		<label>Fotografia (url):</label> 
+		<input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg , image/jpg" />
+		</div>
+
+<div>
+<span><button type="submit">Conferma</button></span>
+</div>
+
+</body>
+</html>
